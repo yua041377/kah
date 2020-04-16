@@ -1,0 +1,5 @@
+
+
+SELECT * 
+FROM emp
+WHERE hiredate < TO_DATE('19820101','YYYYMMDD');
