@@ -102,7 +102,7 @@ WHERE rn BETWEEN 1 AND 10; 1 PAGE
 WHERE rn BETWEEN 11 AND 20; 1 PAGE
 WHERE rn BETWEEN 21 AND 30; 1 PAGE
 
-WHERE rn BETWEEN 1+(n-1)*10 AND PageSize * n ; n PAGE
+WHERE rn 
 
 INLINE-VIEW와 비교를 위해 VIEW를 직접 생성(선행학습, 나중에 나온다)
 VIEW - 쿼리
@@ -155,13 +155,13 @@ ORDER BY ename) c )
 WHERE rn BETWEEN 11 AND 20;
 
 // PROD 테이블을 prod_LGU (내림차순), PROD_COST (오름 차순)으로 정렬하여 
-페이징 처리 쿼리를 작성 하세요.단 페이지 사이즈 : 5, 바인드 변수를 사용할 것
+페이징 처리 쿼리를 작성 하세요.단 페이지 사이즈 : 5, 바인드 변수를 사용할 것.
 SELECT *
 FROM
-(SELECT ROWNUM rn, a.*
-FROM
-(SELECT *
-FROM prod
-ORDER BY prod_lgu desc, prod_cost asc) a )
+    (SELECT ROWNUM rn, a.*
+    FROM
+        (SELECT *
+        FROM prod
+        ORDER BY prod_lgu desc, prod_cost asc) a )
 WHERE rn BETWEEN 1 + (:page -  1) * :pageSize AND :page * : pageSize;
 

@@ -1,5 +1,8 @@
-
-
 SELECT * 
+FROM
+(SELECT ROWNUM rn, a.*
+FROM
+(SELECT *
 FROM emp
-WHERE hiredate < TO_DATE('19820101','YYYYMMDD');
+ORDER BY prod_lgu desc, prod_cost asc) a)
+WHERE rn BETWEEN 11 AND 20;
